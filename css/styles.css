@@ -1,0 +1,13 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    color: tomato;
+}
+
+p.info{
+    color: purple;
+    font-size: smaller;
+}
+
+img{
+    width: 300px;
+}
