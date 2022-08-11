@@ -4,10 +4,7 @@
 let nombreConsumidor = prompt("Bienvenidx! Por favor ingresá tu nombre")
 
 //2)Declaro variables con los precios del helado 
-let precioCuarto = 200;
-let precioMedio = 500;
-let precioKilo = 1000;
-let saldoDeudor = 0;
+
 
 //3)Creo un array que contiene los sabores y sus descripciones
 let saboresDescripcion = [
@@ -25,12 +22,22 @@ let saboresDescripcion = [
     descripcion: "Frambuesa al agua con pedazos de chocolate"},
 ];
 
-//Creo la funcionalidad de mi heladería el usuarix puede ver gustos - agregar gustos - comprar helado - salir
+//4)
+let preciosHelados = [{
+    tamanio: "1/4",
+    precio: 200},
+    {tamanio: "1/2",
+    precio: 500},
+    {tamanio: "1",
+    precio: 1000}
+];
+
+//4) Creo la funcionalidad de mi heladería el usuarix puede ver gustos - agregar gustos - comprar helado - salir
 
 let heladeria = ""
 
 while (heladeria != "SALIR"){
-    heladeria = prompt("Hola " + nombreConsumidor + " ingresá qué preferis entre: VER AGREGAR COMPRAR O SALIR")
+    heladeria = prompt("Hola " + nombreConsumidor + " ingresá qué preferis entre: VER - AGREGAR - PRECIOS - COMPRAR - SALIR")
     switch (heladeria){
         case "VER":
             verSabores()
@@ -41,6 +48,9 @@ while (heladeria != "SALIR"){
         case "AGREGAR":
             agregarHelado();
             break;
+        case "PRECIOS":
+            verPrecios();
+            break;
         case "SALIR":
             alert("Gracias por visitarnos!")
             break;
@@ -50,28 +60,54 @@ while (heladeria != "SALIR"){
     }
 }
 
-//4) El usuarix puede elegir ver o no los sabores de la heladería
+//5) El usuarix puede elegir ver o no los sabores de la heladería
 function verSabores(){
         saboresDescripcion.forEach(sabor => {
         alert(sabor.gusto + "  -  Descripción del gusto: " + sabor.descripcion)
         });
 }
 
+//El usaurio puede ver los precios
+function verPrecios(){
+    preciosHelados.forEach(helado => {
+    alert("El helado de " + helado.tamanio + " sale " + helado.precio)
+    });
+}
 
-//5) Creo función donde usuarix ingresa cantidad deseada
+//6) Creo función donde usuarix ingresa cantidad de helado deseada
 function eleccionTamanio(){
-
+    
     let pedido = prompt("Hola " + nombreConsumidor + " cuántos kilos de helado querés entre: 1/2 , 1/4 o 1?")
+    let abono = prompt("Con cuánto deseas abonar?")
+    let saldoDeudor = "";
 
     if(pedido == "1/2"){
-        alert("El medio kilo te sale $" + precioMedio)
-        alert("Muchas gracias por tu compra")    
+        let saldoDeudor = 500;
+        let vuelto = abono - saldoDeudor;
+        if(vuelto >= 0){
+            alert(`Tu vuelto es: ${abono - saldoDeudor}`)
+            alert("Muchas gracias por tu compra")    
+        }else{
+            alert("No te alcanza el dinero")
+        } 
     }else if(pedido == "1/4"){
-        alert("El cuarto kilo te sale $" + precioCuarto)
-        alert("Muchas gracias por tu compra")       
+        let saldoDeudor = 200;
+        let vuelto = abono - saldoDeudor
+        if(vuelto >= 0){
+            alert(`Tu vuelto es: ${abono - saldoDeudor}`)
+            alert("Muchas gracias por tu compra")    
+        }else{
+            alert("No te alcanza el dinero")
+        } 
     }else if(pedido == "1"){
-        alert("El kilo te sale $" + precioKilo)
-        alert("Muchas gracias por tu compra")      
+        let saldoDeudor = 1000;
+        let vuelto = abono - saldoDeudor
+        if(vuelto >= 0){
+            alert(`Tu vuelto es: ${abono - saldoDeudor}`)
+            alert("Muchas gracias por tu compra")    
+        }else{
+            alert("No te alcanza el dinero")
+        } 
     }else{
         alert("Estás ingresando una cantidad incorrecta. Por favor volvé a elegir una opción")
     } 
@@ -96,7 +132,7 @@ function agregarHelado() {
 
 
     if(corroboroGusto){
-        alert("Ese gusto ya lo tenemos :)")
+        alert("Ya teníamos ese sabor :)")
     } else {                
         const saborUsuarix = {
             gusto: saborNuevo,
@@ -116,13 +152,3 @@ function agregarHelado() {
         verSaboresActualizados()
     }
 }
-
-
-/*     let incluirGusto = prompt("Querés agregar un sabor a la heladaría? Responde SI o NO")
-    if (incluirGusto == "SI"){
-       agregarHelado();
-    }else if(incluirGusto == "NO"){
-        alert("Qué pena! Hasta la próxima visita!")
-    }else{
-        alert("no pudimos entenderte! Hasta la próxima visita!")
-    } */
